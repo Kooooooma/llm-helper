@@ -26,7 +26,8 @@
     "128": "icons/icon-128.png"
   },
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "background.js",
+    "type": "module"
   },
   "content_scripts": [
     {
@@ -35,7 +36,7 @@
         "https://*/*"
       ],
       "js": [
-        "content.js"
+        "features/url-collector/content.js"
       ],
       "run_at": "document_idle"
     }

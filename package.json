@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "test": "node test-helper.js",
+    "test": "node tests/test-helper.js",
     "build": "node build.js"
   },
   "dependencies": {

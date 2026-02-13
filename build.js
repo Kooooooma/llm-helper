@@ -16,19 +16,17 @@ const zip = new AdmZip();
 
 console.log(`📦 Packaging ${manifest.name} v${manifest.version}...`);
 
-// Add core files
-const files = [
+// Add root entry files
+const rootFiles = [
     'manifest.json',
     'background.js',
-    'content.js',
     'popup.html',
-    'popup.css',
     'popup.js',
     'LICENSE',
     'README.md'
 ];
 
-files.forEach(file => {
+rootFiles.forEach(file => {
     if (fs.existsSync(file)) {
         zip.addLocalFile(file);
         console.log(`  + ${file}`);
@@ -41,6 +39,18 @@ files.forEach(file => {
 if (fs.existsSync('icons')) {
     zip.addLocalFolder('icons', 'icons');
     console.log('  + icons/');
+}
+
+// Add shared directory
+if (fs.existsSync('shared')) {
+    zip.addLocalFolder('shared', 'shared');
+    console.log('  + shared/');
+}
+
+// Add features directory
+if (fs.existsSync('features')) {
+    zip.addLocalFolder('features', 'features');
+    console.log('  + features/');
 }
 
 // Write zip file

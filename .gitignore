@@ -2,7 +2,7 @@
 node_modules/
 
 # Test data (Playwright browser profile)
-test-user-data/
+tests/test-user-data/
 
 # OS generated files
 Thumbs.db

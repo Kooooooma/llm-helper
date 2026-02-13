@@ -68,13 +68,22 @@
 
 ```
 llm-helper/
-├── manifest.json      # Extension config (Manifest V3)
-├── popup.html/css/js   # Popup UI & logic
-├── content.js          # Content script (link interception)
-├── background.js       # Service worker (state broadcasting)
-├── build.js            # Build script → dist/*.zip
-├── icons/              # Toolbar icons (16/48/128px)
-└── test-helper.js      # Playwright test harness
+├── manifest.json              # Extension config (Manifest V3, ES modules)
+├── popup.html                 # Popup shell — loads shared + feature CSS/JS
+├── popup.js                   # Popup orchestrator (imports features)
+├── background.js              # Service worker orchestrator (imports features)
+├── shared/
+│   └── base.css               # Design tokens, reset, common components
+├── features/
+│   └── url-collector/         # URL Collector feature
+│       ├── popup.js            # Feature popup logic
+│       ├── popup.css           # Feature-specific styles
+│       ├── content.js          # Content script (link picker)
+│       └── background.js       # Background logic (state broadcasting)
+├── tests/
+│   └── test-helper.js         # Playwright test harness
+├── icons/                     # Toolbar icons (16/48/128px)
+└── build.js                   # Build script → dist/*.zip
 ```
 
 ### State Management

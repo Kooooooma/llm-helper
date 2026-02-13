@@ -2,7 +2,7 @@ const { chromium } = require('playwright');
 const path = require('path');
 
 (async () => {
-    const pathToExtension = path.join(__dirname);
+    const pathToExtension = path.resolve(__dirname, '..');
     const userDataDir = path.join(__dirname, 'test-user-data');
 
     console.log('Launching browser with extension...');

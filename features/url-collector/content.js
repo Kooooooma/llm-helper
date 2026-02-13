@@ -1,7 +1,10 @@
 /**
- * Content Script — Link Picker
+ * URL Collector — Content Script (Link Picker)
  * Intercepts single clicks to capture URLs from <a> elements.
  * Allows double clicks to perform normal navigation.
+ *
+ * NOTE: Content scripts do NOT support ES modules.
+ * This file is self-contained and loaded via manifest content_scripts.
  */
 
 (function () {
