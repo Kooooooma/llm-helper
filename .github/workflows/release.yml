@@ -1,0 +1,48 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'  # Triggered when pushing a tag like v1.0.0
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build extension
+        run: npm run build
+
+      - name: Get version from tag
+        id: version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: v${{ steps.version.outputs.VERSION }}
+          body: |
+            ## llm-helper v${{ steps.version.outputs.VERSION }}
+
+            ### Installation
+            1. Download `llm-helper-v${{ steps.version.outputs.VERSION }}.zip` below
+            2. Unzip the file
+            3. Open `chrome://extensions` or `edge://extensions`
+            4. Enable **Developer Mode**
+            5. Click **Load Unpacked** and select the unzipped folder
+          files: dist/llm-helper-v${{ steps.version.outputs.VERSION }}.zip
+          draft: false
+          prerelease: false

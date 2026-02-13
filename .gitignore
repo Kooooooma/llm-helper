@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+
+# Test data (Playwright browser profile)
+test-user-data/
+
+# OS generated files
+Thumbs.db
+.DS_Store
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+
+# Package manager
+.npm/
+
+package-lock.json
+
+# Build output (uploaded via GitHub Releases)
+dist/
